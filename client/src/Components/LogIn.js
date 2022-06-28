@@ -1,10 +1,12 @@
 import {Link} from 'react-router-dom'
 import {useEffect, useState} from 'react'
+import Error from './Error'
 
 function LogIn({onLogin}){
 
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
+    const [errors, setErrors] = useState("")
 
     const handleSubmit = (e)=>{
      e.preventDefault()
@@ -26,7 +28,7 @@ function LogIn({onLogin}){
             r.json().then((user)=>onLogin(user))
         }
         else{
-            r.json().then((error)=> console.log(error))
+            r.json().then((error)=> setErrors(error.error))
         }
      })
 
@@ -46,7 +48,8 @@ function LogIn({onLogin}){
                 <input type="submit" value="Log in"></input><br/>
                 <Link to="signup">Sign up</Link> <br/>
                 <a href="/">Forgot your password?</a>
-            </form> 
+            </form>
+            {errors.length !=0 && errors.map((error)=>(<Error key={error} error={error}/>))} 
 
         </div>
     )

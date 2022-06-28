@@ -3,7 +3,8 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "articles#index"
-
+  
+   resources :organizations, only: [:index, :create]
    resources :users, only: [:create]
   
    #login existing user
@@ -13,6 +14,7 @@ Rails.application.routes.draw do
 
    # keep user logged in after refreshing page
    get "/me", to: "users#show"
+
 
 
   
