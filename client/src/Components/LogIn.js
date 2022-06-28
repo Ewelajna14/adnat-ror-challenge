@@ -13,7 +13,7 @@ function LogIn(){
                 <input type="checkbox" id="rememberMe"></input><br/>
                 <label for ="rememberMe"> Remember me</label><br/>
                 <input type="submit" value="Log in"></input><br/>
-                <a href="/">Sign up</a> <br/>
+                <Link to="signup">Sign up</Link> <br/>
                 <a href="/">Forgot your password?</a>
             </form> 
 
