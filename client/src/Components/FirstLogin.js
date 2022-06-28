@@ -1,8 +1,27 @@
-function FirstLogin(){
+import {useHistory} from 'react-router-dom'
+
+function FirstLogin({user, setUser}){
+
+    let history = useHistory()
+
+    const handleLogout = ()=>{
+      fetch("/logout", {
+        method: "DELETE"
+      })
+      .then(res=>{
+        if (res.ok){
+            setUser(null)
+        }
+      })
+      history.push("/")
+    }
+
     return(
         <div>
             <h1>Adnat</h1>
-            <p>Logged in as NAME <a href="/"> Log Out</a></p>
+            <p>Logged in as {user.name}
+             <button onClick={handleLogout}> Log Out</button>
+             </p>
             <p>You arent't a member of any organisations.<br/>
             Join an existing one or create a new one.
             </p>
