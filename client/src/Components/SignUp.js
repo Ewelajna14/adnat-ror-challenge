@@ -2,15 +2,13 @@ import {Link} from 'react-router-dom'
 import {useEffect, useState} from 'react'
 import Error from './Error'
 
-function SignUp(){
+function SignUp({onLogin}){
 
     const [name, setName]= useState("")
     const [email, setEmail]=useState("")
     const [pass, setPass] = useState("")
     const [passConf, setPassConf] = useState("")
     const [errors, setErrors] = useState([])
-
-    console.log(errors)
 
     function handleFormSubmit(e){
     e.preventDefault()
@@ -30,7 +28,7 @@ function SignUp(){
       })
       .then((r)=>{
         if(r.ok){
-            r.json().then((newUser)=>console.log(newUser))
+            r.json().then((newUser)=>onLogin(newUser))
         }
         else{
             r.json().then((error)=>setErrors(error.errors) )

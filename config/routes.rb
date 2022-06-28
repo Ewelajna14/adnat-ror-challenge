@@ -8,9 +8,12 @@ Rails.application.routes.draw do
   
    #login existing user
    post "/login", to: "sessions#create"
+   #log user out
+   delete "/logout", to: "sessions#destroy"
 
    # keep user logged in after refreshing page
    get "/me", to: "users#show"
+
 
   
   get '*path',
