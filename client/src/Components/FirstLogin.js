@@ -1,8 +1,20 @@
 import {useHistory} from 'react-router-dom'
+import {useEffect, useState} from 'react'
+import Organizations from './Organizations'
 
 function FirstLogin({user, setUser}){
 
+    const [organizations, setOrganizations] = useState([])
+
     let history = useHistory()
+
+    useEffect(()=>{
+     fetch("/organizations")
+     .then((response)=>response.json())
+     .then((data)=>setOrganizations(data))
+    }, [])
+
+    console.log(organizations)
 
     const handleLogout = ()=>{
       fetch("/logout", {
@@ -26,7 +38,11 @@ function FirstLogin({user, setUser}){
             Join an existing one or create a new one.
             </p>
             <h2>Organizations</h2>
-            <p>PLACE ORGANIZATION COMPONENT HERE</p>
+            <p>
+                {organizations.map(organization=>(
+                        <Organizations key={organization.id} organization={organization}/>
+                ))}
+            </p>
             <h2>Create organisation</h2>
             <form>
                 <label for ="name">Name</label>
