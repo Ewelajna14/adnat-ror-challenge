@@ -7,7 +7,7 @@ function LogIn(){
                 <h1>Adnat</h1>
                 <h2>Log in</h2>
                 <label for="email">Email</label><br/>
-                <input type="text" name="email"></input><br/>
+                <input type="email" name="email"></input><br/>
                 <label for="password" >Password</label><br/>
                 <input type="password" name="password"></input><br/>
                 <input type="checkbox" id="rememberMe"></input><br/>
