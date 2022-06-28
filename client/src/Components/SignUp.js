@@ -1,5 +1,6 @@
 import {Link} from 'react-router-dom'
 import {useEffect, useState} from 'react'
+import Error from './Error'
 
 function SignUp(){
 
@@ -7,6 +8,9 @@ function SignUp(){
     const [email, setEmail]=useState("")
     const [pass, setPass] = useState("")
     const [passConf, setPassConf] = useState("")
+    const [errors, setErrors] = useState([])
+
+    console.log(errors)
 
     function handleFormSubmit(e){
     e.preventDefault()
@@ -16,8 +20,23 @@ function SignUp(){
         password: pass,
         password_confirmation: passConf
       }
-
-      console.log(newUser)
+    
+      fetch("/users", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newUser),
+      })
+      .then((r)=>{
+        if(r.ok){
+            r.json().then((newUser)=>console.log(newUser))
+        }
+        else{
+            r.json().then((error)=>setErrors(error.errors) )
+        }
+      })
+     
     }
 
     return(
@@ -36,7 +55,7 @@ function SignUp(){
                 <input type="submit" value="Sign up"></input><br/>
                 <Link to="/">Log in</Link>
             </form> 
-
+            {errors !=0 && errors.map((error)=>(<Error key={error} error={error} />))}
         </div>
     )
 }
