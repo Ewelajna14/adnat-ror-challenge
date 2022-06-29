@@ -5,6 +5,7 @@ import Organizations from './Organizations'
 function FirstLogin({user, setUser}){
 
     const [organizations, setOrganizations] = useState([])
+    
 
     let history = useHistory()
 
@@ -14,7 +15,6 @@ function FirstLogin({user, setUser}){
      .then((data)=>setOrganizations(data))
     }, [])
 
-    console.log(organizations)
 
     const handleLogout = ()=>{
       fetch("/logout", {
@@ -26,6 +26,16 @@ function FirstLogin({user, setUser}){
         }
       })
       history.push("/")
+    }
+
+    const onUpdateOrganization = (updatedOrg)=>{
+    const updatedOrgArray = organizations.map((organization)=>{
+        if(organization.id === updatedOrg.id){
+            return updatedOrg
+        }
+        else {return organization}
+    })
+    setOrganizations(updatedOrgArray)
     }
 
     return(
@@ -40,7 +50,7 @@ function FirstLogin({user, setUser}){
             <h2>Organizations</h2>
             <p>
                 {organizations.map(organization=>(
-                        <Organizations key={organization.id} organization={organization}/>
+                        <Organizations key={organization.id} organization={organization} onUpdateOrganization={onUpdateOrganization}/>
                 ))}
             </p>
             <h2>Create organisation</h2>

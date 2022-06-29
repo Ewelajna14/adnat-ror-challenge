@@ -1,6 +1,6 @@
 import {useState} from 'react'
 
-function Organizations({organization}){
+function Organizations({organization, onUpdateOrganization}){
 
     const [show, setShow] = useState(false)
     const [orgId, setOrgId] = useState(null)
@@ -27,7 +27,7 @@ function Organizations({organization}){
         body: JSON.stringify(updatedOrganization),
      })
      .then((r)=>r.json())
-     .then((data)=>console.log(data))
+     .then((data)=>onUpdateOrganization(data))
      setShow(false)
     }
 
