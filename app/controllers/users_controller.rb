@@ -13,8 +13,16 @@ class UsersController < ApplicationController
         render json: @current_user
      end
 
+     #PATCH /users/:id
+     def update
+        #user = User.find(params[:id])
+        @current_user.update!(user_params)
+        render json: @current_user
+     end
+
+
     private
     def user_params
-        params.permit(:name, :email_address, :password, :password_confirmation)
+        params.permit(:user, :id, :name, :organization_id, :email_address, :password, :password_confirmation)
     end
 end

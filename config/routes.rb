@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   # root "articles#index"
   
    resources :organizations, only: [:index, :create, :update, :destroy]
-   resources :users, only: [:create]
+   resources :users, only: [:create, :update]
   
    #login existing user
    post "/login", to: "sessions#create"

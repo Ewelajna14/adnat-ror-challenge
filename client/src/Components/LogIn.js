@@ -1,5 +1,5 @@
 import {Link} from 'react-router-dom'
-import {useEffect, useState} from 'react'
+import {useState} from 'react'
 import Error from './Error'
 
 function LogIn({onLogin}){
@@ -14,7 +14,7 @@ function LogIn({onLogin}){
         email_address: email,
         password: password
      }
-     console.log(user)
+    
 
     fetch("/login", {
         method: "POST",

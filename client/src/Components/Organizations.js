@@ -1,6 +1,6 @@
 import {useState} from 'react'
 
-function Organizations({organization, onUpdateOrganization, onDeleteOrganization}){
+function Organizations({organization, onUpdateOrganization, onDeleteOrganization, user, setUser}){
 
     const [show, setShow] = useState(false)
     const [orgId, setOrgId] = useState(null)
@@ -38,6 +38,25 @@ function Organizations({organization, onUpdateOrganization, onDeleteOrganization
         onDeleteOrganization(orgId)
     }
 
+
+    const handleJoin =(e)=>{
+    const organizationId = e.target.id
+    const joined ={
+        organization_id: organizationId
+    }
+    fetch(`/users/${user.id}`, {
+        method: "PATCH",
+        headers:{
+        "Content-Type": "application/json",
+        },
+        body: JSON.stringify(joined),
+    })
+    .then((r)=>r.json())
+    .then((data)=>setUser(data))
+    }
+
+    console.log(user)
+
    
 
     return(
@@ -57,7 +76,7 @@ function Organizations({organization, onUpdateOrganization, onDeleteOrganization
           <button onClick={handleDelete}>Delete</button>
           </div>
           :null}
-          <button>Join</button>
+          <button id={organization.id} onClick={handleJoin}>Join</button>
           </li>
         </ul>
     )

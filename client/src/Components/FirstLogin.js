@@ -16,18 +16,6 @@ function FirstLogin({user, setUser}){
     }, [])
 
 
-    const handleLogout = ()=>{
-      fetch("/logout", {
-        method: "DELETE"
-      })
-      .then(res=>{
-        if (res.ok){
-            setUser(null)
-        }
-      })
-      history.push("/")
-    }
-
     const onUpdateOrganization = (updatedOrg)=>{
     const updatedOrgArray = organizations.map((organization)=>{
         if(organization.id === updatedOrg.id){
@@ -46,17 +34,13 @@ function FirstLogin({user, setUser}){
 
     return(
         <div>
-            <h1>Adnat</h1>
-            <p>Logged in as {user.name}
-             <button onClick={handleLogout}> Log Out</button>
-             </p>
             <p>You arent't a member of any organisations.<br/>
             Join an existing one or create a new one.
             </p>
             <h2>Organizations</h2>
             <p>
                 {organizations.map(organization=>(
-                        <Organizations key={organization.id} organization={organization} onUpdateOrganization={onUpdateOrganization} onDeleteOrganization={onDeleteOrganization}/>
+                        <Organizations key={organization.id} organization={organization} onUpdateOrganization={onUpdateOrganization} onDeleteOrganization={onDeleteOrganization} user={user} setUser={setUser}/>
                 ))}
             </p>
             <h2>Create organisation</h2>
