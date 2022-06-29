@@ -38,6 +38,13 @@ function FirstLogin({user, setUser}){
     setOrganizations(updatedOrgArray)
     }
 
+    const onDeleteOrganization = (deletedItem)=>{
+    const notDeletedOrg = organizations.filter((organization) =>{
+        organization.id !== deletedItem
+    })
+    setOrganizations(notDeletedOrg)
+    }
+
     return(
         <div>
             <h1>Adnat</h1>
@@ -50,7 +57,7 @@ function FirstLogin({user, setUser}){
             <h2>Organizations</h2>
             <p>
                 {organizations.map(organization=>(
-                        <Organizations key={organization.id} organization={organization} onUpdateOrganization={onUpdateOrganization}/>
+                        <Organizations key={organization.id} organization={organization} onUpdateOrganization={onUpdateOrganization} onDeleteOrganization={onDeleteOrganization}/>
                 ))}
             </p>
             <h2>Create organisation</h2>

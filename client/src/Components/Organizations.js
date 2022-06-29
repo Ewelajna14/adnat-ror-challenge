@@ -1,6 +1,6 @@
 import {useState} from 'react'
 
-function Organizations({organization, onUpdateOrganization}){
+function Organizations({organization, onUpdateOrganization, onDeleteOrganization}){
 
     const [show, setShow] = useState(false)
     const [orgId, setOrgId] = useState(null)
@@ -32,7 +32,10 @@ function Organizations({organization, onUpdateOrganization}){
     }
 
     const handleDelete = ()=>{
-        console.log(`I am ${orgId} delete was clicked`)
+        fetch(`/organizations/${orgId}`, {
+            method: "DELETE"
+        })
+        onDeleteOrganization(orgId)
     }
 
    
