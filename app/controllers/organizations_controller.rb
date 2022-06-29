@@ -14,13 +14,14 @@ class OrganizationsController < ApplicationController
 
     #PATCH /organizations/:id
     def update
-        organization = Organization.find(params[:id]).update!(organization_params)
+        organization = Organization.find(params[:id])
+        organization.update!(organization_params)
         render json: organization
     end
 
     private
     def organization_params
-        params.permit(:name, :hourly_rate)
+        params.permit(:id, :name, :hourly_rate)
     end
 
 end
