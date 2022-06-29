@@ -19,6 +19,13 @@ class OrganizationsController < ApplicationController
         render json: organization
     end
 
+    #DELETE /organizations/:id
+    def destroy
+        organization = Organization.find(params[:id])
+        organization.destroy
+        head :no_content
+    end
+
     private
     def organization_params
         params.permit(:id, :name, :hourly_rate)

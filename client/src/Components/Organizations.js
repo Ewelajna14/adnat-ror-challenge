@@ -31,6 +31,10 @@ function Organizations({organization, onUpdateOrganization}){
      setShow(false)
     }
 
+    const handleDelete = ()=>{
+        console.log(`I am ${orgId} delete was clicked`)
+    }
+
    
 
     return(
@@ -38,6 +42,7 @@ function Organizations({organization, onUpdateOrganization}){
           <li>{organization.name}
           <button id={organization.id} onClick={handleEdit}>Edit</button>
           {show?
+          <div>
           <form onSubmit = {handleSubmit}>
            <h1>Edit Organisation</h1>
            <label for="name">Name:</label>
@@ -45,8 +50,9 @@ function Organizations({organization, onUpdateOrganization}){
            <label for="rate">Hourly Rate:</label>
            <input type="number" name="rate" value={rate} onChange={(e)=>setRate(e.target.value)}></input><br/>
            <button type="submit">Update</button><br/>
-           <button>Delete</button>
           </form>
+          <button onClick={handleDelete}>Delete</button>
+          </div>
           :null}
           <button>Join</button>
           </li>
