@@ -40,8 +40,7 @@ function FirstLogin({user, setUser}){
 
     const onDeleteOrganization = (deletedItem)=>{
     const notDeletedOrg = organizations.filter((organization) =>{
-        organization.id !== deletedItem
-    })
+    return organization.id != deletedItem})
     setOrganizations(notDeletedOrg)
     }
 
