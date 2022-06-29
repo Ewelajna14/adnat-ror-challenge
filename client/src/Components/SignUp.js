@@ -46,7 +46,7 @@ function SignUp({onLogin}){
                 <input type="text" name="name" value={name} onChange={(e)=>setName(e.target.value)}></input><br/>
                 <label for="email" >Email</label><br/>
                 <input type="email" name="email" value={email} onChange={(e)=>setEmail(e.target.value)}></input><br/>
-                <label for="password">Password</label><br/>
+                <label for="password">Password (6 characters minimum)</label><br/>
                 <input type="password" name="password" value={pass} onChange={(e)=>setPass(e.target.value)}></input><br/>
                 <label for="passconfirm">Password confirmation</label><br/>
                 <input type="password" name="passconfirm" value={passConf} onChange={(e)=>setPassConf(e.target.value)}></input><br/>
