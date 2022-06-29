@@ -3,7 +3,7 @@ class OrganizationsController < ApplicationController
     #GET /organizations
     def index
         organizations = Organization.all
-        render json: organizations
+        render json: organizations, include: :users
     end
 
     #POST /organizations

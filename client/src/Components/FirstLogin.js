@@ -1,14 +1,13 @@
-import {useHistory} from 'react-router-dom'
+
 import {useEffect, useState} from 'react'
 import Organizations from './Organizations'
 
 function FirstLogin({user, setUser}){
 
     const [organizations, setOrganizations] = useState([])
+    const [name, setName] = useState("")
+    const [rate, setRate] = useState("")
     
-
-    let history = useHistory()
-
     useEffect(()=>{
      fetch("/organizations")
      .then((response)=>response.json())
@@ -32,6 +31,32 @@ function FirstLogin({user, setUser}){
     setOrganizations(notDeletedOrg)
     }
 
+
+    const onCreateOrg = (newOrganization)=>{
+     const newOrganizations = [...organizations, newOrganization]
+     setOrganizations(newOrganizations)
+    }
+
+
+    const handleCreateOrg = (e)=>{
+    e.preventDefault()
+    const newOrganization = {
+       name: name,
+       hourly_rate: rate 
+    }
+    fetch("/organizations", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newOrganization),
+    })
+    .then((r)=> r.json())
+    .then((newOrganization)=>onCreateOrg(newOrganization))
+    setName("")
+    setRate("")
+    }
+
     return(
         <div>
             <p>You arent't a member of any organisations.<br/>
@@ -44,11 +69,11 @@ function FirstLogin({user, setUser}){
                 ))}
             </p>
             <h2>Create organisation</h2>
-            <form>
+            <form onSubmit={handleCreateOrg}>
                 <label for ="name">Name</label>
-                <input type="text" name="name"></input><br/>
+                <input type="text" name="name" value={name} onChange={(e)=>setName(e.target.value)}></input><br/>
                 <label for="rate">Hourly rate: $</label>
-                <input type="number" name="rate"></input><br/>
+                <input type="number" name="rate" value={rate} onChange={(e)=>setRate(e.target.value)}></input><br/>
                 <input type="submit" value="Create and Join"/>
             </form>
 

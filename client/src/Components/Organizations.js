@@ -55,9 +55,6 @@ function Organizations({organization, onUpdateOrganization, onDeleteOrganization
     .then((data)=>setUser(data))
     }
 
-    
-
-   
 
     return(
         <ul>
