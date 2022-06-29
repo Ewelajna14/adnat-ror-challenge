@@ -55,7 +55,7 @@ function Organizations({organization, onUpdateOrganization, onDeleteOrganization
     .then((data)=>setUser(data))
     }
 
-    console.log(user)
+    
 
    
 
