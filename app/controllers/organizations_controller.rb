@@ -6,9 +6,11 @@ class OrganizationsController < ApplicationController
         render json: organizations, include: :users
     end
 
-    #POST /organizations
+    #POST /users/:user_id/organizations
     def create
-        organization = Organization.create!(organization_params)
+        user = User.find(params[:user_id])
+        organization = user.create_organization(organization_params)
+        user.update(user_params)
         render json: organization, status: :created
     end
 
@@ -26,9 +28,21 @@ class OrganizationsController < ApplicationController
         head :no_content
     end
 
+    def show
+        organization = Organization.find(params[:id])
+        render json: organization
+    end
+
+
     private
     def organization_params
-        params.permit(:id, :name, :hourly_rate)
+        params.require(:organization).permit(:id, :name, :hourly_rate, :users)
     end
+
+    def user_params
+        params.permit(:user, :id, :organization_id)
+    end
+
+    
 
 end

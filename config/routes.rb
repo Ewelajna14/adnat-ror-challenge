@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "articles#index"
   
-   resources :organizations, only: [:index, :create, :update, :destroy]
+   resources :organizations, only: [:index, :create, :update, :destroy, :show]
    resources :users, only: [:index, :create, :update]
   
    #login existing user
@@ -16,7 +16,9 @@ Rails.application.routes.draw do
    get "/me", to: "users#show"
 
 
-  
+  resources :users do
+    resources :organizations, only: [:create]
+  end
 
   
   get '*path',

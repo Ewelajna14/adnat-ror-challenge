@@ -1,8 +1,12 @@
 
 import {useEffect, useState} from 'react'
 import Organizations from './Organizations'
+import {useHistory} from 'react-router-dom'
+
 
 function FirstLogin({user, setUser}){
+
+    let history = useHistory()
 
     const [organizations, setOrganizations] = useState([])
     const [name, setName] = useState("")
@@ -42,9 +46,9 @@ function FirstLogin({user, setUser}){
     e.preventDefault()
     const newOrganization = {
        name: name,
-       hourly_rate: rate 
+       hourly_rate: rate
     }
-    fetch("/organizations", {
+    fetch(`/users/${user.id}/organizations`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
