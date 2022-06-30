@@ -59,6 +59,7 @@ function FirstLogin({user, setUser}){
     .then((newOrganization)=>onCreateOrg(newOrganization))
     setName("")
     setRate("")
+    window.location.reload(false);
     }
 
     return(
