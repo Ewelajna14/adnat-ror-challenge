@@ -21,6 +21,11 @@ Rails.application.routes.draw do
     resources :organizations, only: [:create]
   end
 
+  resources :organizations do
+      resources :shifts, only: [:index]
+    end
+  
+
   
   get '*path',
       to: 'fallback#index',

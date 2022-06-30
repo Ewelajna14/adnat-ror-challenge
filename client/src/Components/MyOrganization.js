@@ -1,6 +1,9 @@
 import Shifts from "./Shifts"
 import {useState} from 'react'
+
 function MyOrganization({user, setUser}){
+
+    const [show, setShow] = useState(false)
 
     const leaveOrg = () =>{
         const leave = {
@@ -21,9 +24,10 @@ function MyOrganization({user, setUser}){
     return(
         <div>
            <h1>{user.organization.name}</h1>
-           <button>View Shifts</button>
+           <button onClick ={()=>setShow(!show)}>View Shifts</button>
            <button>Edit</button>
            <button onClick={leaveOrg}>Leave</button>
+           {show?<Shifts/>:null}
         </div>
     )
 }
