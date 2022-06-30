@@ -1,6 +1,17 @@
+import {useEffect, useState} from 'react'
 import UserShift from './UserShift'
 
-function Shifts(){
+function Shifts({user}){
+
+    const[shifts, setShifts] = useState([])
+
+    useEffect(()=>{
+    fetch(`organizations/${user.organization_id}/shifts`)
+    .then((r)=>r.json())
+    .then((data)=>setShifts(data))
+    }, [])
+
+
     return(
         <div>
            <h1>Shifts</h1>
@@ -14,9 +25,9 @@ function Shifts(){
                 <td>Hours worked</td>
                 <td>Shift cost</td>
             </tr>
-            <tr>
-                <UserShift/>
-            </tr>
+           
+                {shifts.map((shift)=>(<UserShift key={shift.id} shift={shift} user={user}/>))}
+           
            </table>
         </div>
     )

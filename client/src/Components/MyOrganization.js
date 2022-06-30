@@ -27,7 +27,7 @@ function MyOrganization({user, setUser}){
            <button onClick ={()=>setShow(!show)}>View Shifts</button>
            <button>Edit</button>
            <button onClick={leaveOrg}>Leave</button>
-           {show?<Shifts/>:null}
+           {show?<Shifts user={user}/>:null}
         </div>
     )
 }

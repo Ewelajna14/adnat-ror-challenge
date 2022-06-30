@@ -4,7 +4,7 @@ class ShiftsController < ApplicationController
     def index
         orgId = params[:organization_id]
         shift = Shift.includes(:user).where(users: {organization_id: orgId})
-        render json: shift
+        render json: shift, include: [:user]
     end
 
 end
