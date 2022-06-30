@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   
    resources :organizations, only: [:index, :create, :update, :destroy, :show]
    resources :users, only: [:index, :create, :update]
+   resources :shifts, only: [:index, :create, :update]
   
    #login existing user
    post "/login", to: "sessions#create"
