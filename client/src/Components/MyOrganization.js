@@ -1,3 +1,5 @@
+import Shifts from "./Shifts"
+import {useState} from 'react'
 function MyOrganization({user, setUser}){
 
     const leaveOrg = () =>{
