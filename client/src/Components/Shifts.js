@@ -1,5 +1,6 @@
 import {useEffect, useState} from 'react'
 import UserShift from './UserShift'
+import '../App.css'
 
 function Shifts({user}){
 
@@ -17,7 +18,7 @@ function Shifts({user}){
            <h1>Shifts</h1>
            <table>
            <tr>
-                <td>Employee name</td>
+                <td >Employee name</td>
                 <td>Shift date</td>
                 <td>Start time</td>
                 <td>Finish time</td>
