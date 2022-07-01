@@ -1,8 +1,9 @@
 import Moment from 'moment';
-function UserShift({shift}){
+function UserShift({shift, user}){
 
     const startDate = Moment.parseZone(shift.start).format('MMMM DD,  LT')
     const endDate = Moment.parseZone(shift.finish).format('MMMM DD,  LT')
+   
 
    const time = startDate.split(',')[1]
    const start = startDate.split(',')[0]
@@ -14,12 +15,14 @@ function UserShift({shift}){
    const fTime = ft.split(",")[1]
   
 
+   let breakMiliSEc = shift.break_length *1000 *60
+
    const diff = (start, end)=> {
     start = start.split(":");
     end = end.split(":");
     var startDate = new Date(0, 0, 0, start[0], start[1], 0);
     var endDate = new Date(0, 0, 0, end[0], end[1], 0);
-    var diff = endDate.getTime() - startDate.getTime();
+    var diff = endDate.getTime() - startDate.getTime() - breakMiliSEc;
     var hours = Math.floor(diff / 1000 / 60 / 60);
     diff -= hours * 1000 * 60 * 60;
     var minutes = Math.floor(diff / 1000 / 60);
@@ -30,8 +33,11 @@ function UserShift({shift}){
     return (hours <= 9 ? "0" : "") + hours + ":" + (minutes <= 9 ? "0" : "") + minutes;
 }
 
-const difference = diff(sTime, fTime)
-  
+    const difference = diff(sTime, fTime)
+
+    const rate = user.organization.hourly_rate
+    console.log(rate)
+    console.log(difference)
 
     return(
         <tr>
