@@ -51,7 +51,7 @@ function UserShift({shift, user}){
 
 
     const difference = diff(sTime, fTime)
-
+    
     return(
         <tr>
           <td>{shift.user.name}</td>

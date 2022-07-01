@@ -21,7 +21,7 @@ function Shifts({user}){
 
     const onAdd = (data) =>{
         const newData = [...shifts, data]
-        setFinish(newData)
+        setShifts(newData)
     }
 
 
@@ -32,8 +32,6 @@ function Shifts({user}){
         finish: date + 'T' + finish,
         break_length: br
     }
-
-    console.log(data)
 
     fetch('/shifts', {
         method: "POST",

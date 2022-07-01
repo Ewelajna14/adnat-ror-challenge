@@ -10,7 +10,7 @@ class ShiftsController < ApplicationController
     #POST /shifts
     def create
        shift =  @current_user.shifts.create!(shift_params)
-       render json: shift, status: :created
+       render json: shift, include: [:user],  status: :created
     end
 
     private
