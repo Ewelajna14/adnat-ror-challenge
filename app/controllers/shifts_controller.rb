@@ -7,4 +7,16 @@ class ShiftsController < ApplicationController
         render json: shift, include: [:user]
     end
 
+    #POST /shifts
+    def create
+       shift =  @current_user.shifts.create!(shift_params)
+       render json: shift, status: :created
+    end
+
+    private
+    def shift_params
+        params.require(:shift).permit(:date, :start, :finish, :break_length)
+    end 
+
+
 end

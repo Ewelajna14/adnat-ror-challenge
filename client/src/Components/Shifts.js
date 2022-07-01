@@ -19,6 +19,39 @@ function Shifts({user}){
     }, [])
 
 
+    const onAdd = (data) =>{
+        const newData = [...shifts, data]
+        setFinish(newData)
+    }
+
+
+    const onAddShift = (e)=>{
+    e.preventDefault()
+    const data = {
+        start: date + 'T' + start,
+        finish: date + 'T' + finish,
+        break_length: br
+    }
+
+    console.log(data)
+
+    fetch('/shifts', {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+    })
+    .then((r)=> r.json())
+    .then((data)=>onAdd(data))
+    setDate("")
+    setStart("")
+    setFinish("")
+    setBr("") 
+
+    }
+
+
     return(
         <div>
            <h1>Shifts</h1>
@@ -38,15 +71,15 @@ function Shifts({user}){
            </table>
            <button onClick={()=>setShow(!show)}>Add Shift</button>
            {show?
-            <form>
+            <form onSubmit={onAddShift}>
                <label for ="shift">Shift Date</label>
-                <input type="date" name="shift"></input><br/>
+                <input type="date" name="shift" value={date} onChange={(e)=>setDate(e.target.value)}></input><br/>
                 <label for="start">Start Time</label>
-                <input type="time" name="start" ></input><br/>
+                <input type="time" name="start" value={start} onChange={(e)=>setStart(e.target.value)} ></input><br/>
                 <label for="finish">Finish Time</label>
-                <input type="time" name="finish" ></input><br/>
+                <input type="time" name="finish" value={finish} onChange={(e)=>setFinish(e.target.value)}></input><br/>
                 <label for="break">Break in minutes</label>
-                <input type="number" name="break" ></input><br/>
+                <input type="number" name="break" value={br} onChange={(e)=>setBr(e.target.value)}></input><br/>
                 <input type="submit" value="Submit"/> 
             </form>
              :null}

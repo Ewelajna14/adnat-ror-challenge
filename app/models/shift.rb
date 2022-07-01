@@ -1,8 +1,9 @@
 class Shift < ApplicationRecord
-    attr_accessor :date, :start_time, :finish_time
-
     belongs_to :user
+    
 
-
-
+    validates :break_length, numericality: { only_integer: true }
+    validates :start, presence: true
+    validates :finish, presence: true
+   
 end
