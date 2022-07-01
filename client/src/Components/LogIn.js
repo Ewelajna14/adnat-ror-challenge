@@ -1,12 +1,14 @@
 import {Link} from 'react-router-dom'
 import {useState} from 'react'
 import Error from './Error'
+import ForgotPass from './ForgotPass'
 
 function LogIn({onLogin}){
 
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [errors, setErrors] = useState("")
+    const [show, setShow] = useState(false)
 
     const handleSubmit = (e)=>{
      e.preventDefault()
@@ -47,10 +49,12 @@ function LogIn({onLogin}){
                 <label for ="rememberMe"> Remember me</label><br/>
                 <input type="submit" value="Log in"></input><br/>
                 <Link to="signup">Sign up</Link> <br/>
-                <a href="/">Forgot your password?</a>
             </form>
+            <button onClick={()=>setShow(!show)}>Forgot your password?</button>
             {errors.length !=0 && errors.map((error)=>(<Error key={error} error={error}/>))} 
-
+            {
+                show?<ForgotPass/>:null
+            }
         </div>
     )
 }
