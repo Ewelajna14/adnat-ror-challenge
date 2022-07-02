@@ -24,6 +24,29 @@ function MyOrganization({user, setUser}){
         .then((data)=>setUser(data))
     }
 
+    const onUpdateOrganization = ()=>{
+        window.location.reload(false);
+    }
+
+    const handleEdit = (e)=>{
+        e.preventDefault()
+        const updatedOrganization = {
+        name: name,
+        hourly_rate: rate
+        }
+        
+        fetch(`/organizations/${user.organization_id}`, {
+           method: "PATCH",
+           headers:{
+           "Content-Type": "application/json",
+           },
+           body: JSON.stringify(updatedOrganization),
+        })
+        .then((r)=>r.json())
+        .then((data)=>onUpdateOrganization(data))
+        setEdit(false)
+    }
+
     
 
     return(
@@ -34,7 +57,7 @@ function MyOrganization({user, setUser}){
            <button onClick={leaveOrg}>Leave</button>
            {edit?
           <div>
-          <form>
+          <form onSubmit = {handleEdit}>
            <h1>Edit Organisation</h1>
            <label for="name">Name:</label>
            <input type="text" name="name" value={name} onChange={(e)=>setName(e.target.value)}></input><br/>
