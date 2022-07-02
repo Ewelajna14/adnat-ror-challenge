@@ -1,6 +1,6 @@
 class User < ApplicationRecord
     belongs_to :organization, optional: true
-    has_many :shifts
+    has_many :shifts, dependent: :destroy
 
     validates :name, presence: true
     validates :email_address, presence: true

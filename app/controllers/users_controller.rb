@@ -23,12 +23,15 @@ class UsersController < ApplicationController
      def update
         #user = User.find(params[:id])
         @current_user.update!(user_params)
+        if(@current_user.shifts)
+            @current_user.shifts.delete_all
         render json: @current_user
+        end
      end
 
 
     private
     def user_params
-        params.permit(:user, :id, :name, :organization_id, :email_address, :password, :password_confirmation)
+        params.permit(:user, :id, :name, :organization_id, :email_address, :password, :password_confirmation, :shifts)
     end
 end

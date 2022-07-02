@@ -6,7 +6,6 @@ import {useHistory} from 'react-router-dom'
 
 function FirstLogin({user, setUser}){
 
-    let history = useHistory()
 
     const [organizations, setOrganizations] = useState([])
     const [name, setName] = useState("")
