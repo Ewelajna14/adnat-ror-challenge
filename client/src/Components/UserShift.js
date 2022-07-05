@@ -51,6 +51,22 @@ function UserShift({shift, user}){
 
 
     const difference = diff(sTime, fTime)
+
+    const handleDelete = (e) => {
+     const shiftId = e.target.id
+     fetch(`/shifts/${shiftId}`, {
+        method: "DELETE"
+     })
+     .then(res=>{
+        if (res.ok){
+            res.json().then((message)=>console.log(message))
+        }
+
+      })
+     
+    }
+
+
     
     return(
         <tr>
@@ -61,7 +77,7 @@ function UserShift({shift, user}){
           <td>{shift.break_length}</td>
           <td>{difference}</td>
           <td>{cost}</td>
-          <button>Delete</button>
+          <button id = {shift.id} onClick ={handleDelete}>Delete</button>
         </tr>
     )
 }

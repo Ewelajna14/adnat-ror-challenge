@@ -24,6 +24,10 @@ function Shifts({user}){
         setShifts(newData)
     }
 
+    const onDelete = (shiftId)=>{
+
+    }
+
 
     const onAddShift = (e)=>{
     e.preventDefault()
@@ -64,7 +68,7 @@ function Shifts({user}){
                 <td>Shift cost</td>
             </tr>
            
-                {shifts.map((shift)=>(<UserShift key={shift.id} shift={shift} user={user}/>))}
+                {shifts.map((shift)=>(<UserShift key={shift.id} shift={shift} user={user} onDelete={onDelete}/>))}
            
            </table>
            <button onClick={()=>setShow(!show)}>Add Shift</button>

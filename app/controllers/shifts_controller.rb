@@ -13,6 +13,17 @@ class ShiftsController < ApplicationController
        render json: shift, include: [:user],  status: :created
     end
 
+    #DELETE /shifts/:id
+    def destroy
+        shift = @current_user.shifts.find_by(id: params[:id])
+        if shift
+        shift.destroy
+        head :no_content
+        else
+        render json: {message: "You can't delete someone else's shift"}
+        end
+    end
+
     private
     def shift_params
         params.require(:shift).permit(:date, :start, :finish, :break_length)
