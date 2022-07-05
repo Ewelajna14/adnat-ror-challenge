@@ -1,24 +1,28 @@
-# README
+# ADNAT 
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Ruby on Rails and React app for tracking work shifts.
+After creating an account, users can join, update or create organizations.
+After joining organization user can create shift displaying start time, finish time, breaks, compensation.
 
-Things you may want to cover:
+# Set up guide
 
-* Ruby version
+* Ruby - version 2.7.5p203
+* Rails - version 7.0.3
+* React - version 18.2.0 
 
-* System dependencies
+## Clone 
 
-* Configuration
+In your terminal, navigate to the folder where you want to store this repo then run the command:
 
-* Database creation
+$ git clone  git@github.com:Ewelajna14/adnat-ror-challenge.git
 
-* Database initialization
+## Launch app locally
 
-* How to run the test suite
+bundle install
+rails db:create
+npm install --prefix client
 
-* Services (job queues, cache servers, search engines, etc.)
+You can use the following commands to run the application:
 
-* Deployment instructions
-
-* ...
+* rails s: run the backend on http://localhost:3000
+* npm start --prefix client: run the frontend on http://localhost:4000
