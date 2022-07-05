@@ -30,23 +30,29 @@ Install Postgresql
 To install Postgres for WSL, run the following commands from your Ubuntu terminal:
 * `sudo apt update`
 * `sudo apt install postgresql postgresql-contrib libpq-dev`
+
 Then confirm that Postgres was installed successfully:
 * `psql --version`
+
 Run this command to start the Postgres service:
 * `sudo service postgresql start`
+
 Finally, you'll also need to create a database user so that you are able to connect to the database from Rails. First, check what your operating system username is:
 * `whoami`
+
 create a Postgres user
 * `sudo -u postgres -i`
+
 From the Postgres CLI, run this command (replace "username" with your username)
 * `createuser -sr username`
 
 Postgresql Installation for OSX
+
 To install Postgres for OSX, you can use Homebrew:
 * `brew install postgresql`
 * `brew services start postgresql`
 
-## Clone 
+## Run app locally 
 
 In your terminal, navigate to the folder where you want to store this repo then run the command:
 
