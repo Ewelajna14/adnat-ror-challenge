@@ -56,8 +56,8 @@ To install Postgres for OSX, you can use Homebrew:
 
 In your terminal, navigate to the folder where you want to store this repo then run the command:
 
-`$ git clone  git@github.com:Ewelajna14/adnat-ror-challenge.git`
-`cd adnat-ror-challenge`
+* `$ git clone  git@github.com:Ewelajna14/adnat-ror-challenge.git`
+* `cd adnat-ror-challenge`
 
 Run this command in your terminal: 
 
