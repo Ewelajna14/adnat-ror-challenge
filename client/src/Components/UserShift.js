@@ -57,12 +57,13 @@ function UserShift({shift, user, onDelete}){
      fetch(`/shifts/${shiftId}`, {
         method: "DELETE"
      })
-     onDelete(shiftId)
-     
+     .then(res=>{
+        if (res.ok){
+            onDelete(shiftId)
+        }
+    })
     }
 
-
-    
     return(
         <tr>
           <td>{shift.user.name}</td>
@@ -72,7 +73,9 @@ function UserShift({shift, user, onDelete}){
           <td>{shift.break_length}</td>
           <td>{difference}</td>
           <td>{cost}</td>
+          {user.id == shift.user_id?
           <button id = {shift.id} onClick ={handleDelete}>Delete</button>
+           :null}
         </tr>
     )
 }
