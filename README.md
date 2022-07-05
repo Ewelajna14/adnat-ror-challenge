@@ -18,11 +18,15 @@ $ git clone  git@github.com:Ewelajna14/adnat-ror-challenge.git
 
 ## Launch app locally
 
+```console
 bundle install
 rails db:create
 npm install --prefix client
+```
 
 You can use the following commands to run the application:
 
+```console
 * rails s: run the backend on http://localhost:3000
 * npm start --prefix client: run the frontend on http://localhost:4000
+```
