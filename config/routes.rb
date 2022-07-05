@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   
    resources :organizations, only: [:index, :create, :update, :destroy, :show]
    resources :users, only: [:index, :create, :update]
-   resources :shifts, only: [:create, :update]
+   resources :shifts, only: [:create, :update, :destroy]
   
    #login existing user
    post "/login", to: "sessions#create"
@@ -15,6 +15,8 @@ Rails.application.routes.draw do
 
    # keep user logged in after refreshing page
    get "/me", to: "users#show"
+
+   
 
 
   resources :users do

@@ -61,6 +61,7 @@ function UserShift({shift, user}){
           <td>{shift.break_length}</td>
           <td>{difference}</td>
           <td>{cost}</td>
+          <button>Delete</button>
         </tr>
     )
 }
