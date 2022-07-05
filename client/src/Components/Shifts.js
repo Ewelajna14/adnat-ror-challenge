@@ -25,7 +25,10 @@ function Shifts({user}){
     }
 
     const onDelete = (shiftId)=>{
-
+     const newData = shifts.filter((shift)=>{
+        return shift.id != shiftId
+     })
+     setShifts(newData)
     }
 
 

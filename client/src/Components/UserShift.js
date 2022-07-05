@@ -1,5 +1,5 @@
 import Moment from 'moment';
-function UserShift({shift, user}){
+function UserShift({shift, user, onDelete}){
 
     const startDate = Moment.parseZone(shift.start).format('MMMM DD,  LT')
     const endDate = Moment.parseZone(shift.finish).format('MMMM DD,  LT')
@@ -57,12 +57,7 @@ function UserShift({shift, user}){
      fetch(`/shifts/${shiftId}`, {
         method: "DELETE"
      })
-     .then(res=>{
-        if (res.ok){
-            res.json().then((message)=>console.log(message))
-        }
-
-      })
+     onDelete(shiftId)
      
     }
 

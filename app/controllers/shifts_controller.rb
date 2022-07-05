@@ -20,7 +20,7 @@ class ShiftsController < ApplicationController
         shift.destroy
         head :no_content
         else
-        render json: {message: "You can't delete someone else's shift"}
+        render json: {error: "You can't delete someone else's shift"}
         end
     end
 
